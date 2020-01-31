@@ -5,7 +5,7 @@ exports.seed = function(knex) {
 		return knex('campaigns').insert([
 			{
 				id: 1,
-				title: 'rowValue1',
+				title: 'Stray cats in Fountain',
 				location: 'Fountain, MI',
 				description:
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
@@ -16,7 +16,7 @@ exports.seed = function(knex) {
 			},
 			{
 				id: 2,
-				title: 'rowValue2',
+				title: 'Stray dogs in Ludington',
 				location: 'Ludington, MI',
 				description:
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -27,7 +27,7 @@ exports.seed = function(knex) {
 			},
 			{
 				id: 3,
-				title: 'rowValue3',
+				title: 'Roof repairs on Manistee Humane Society building',
 				location: 'Manistee, MI',
 				description:
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -38,7 +38,7 @@ exports.seed = function(knex) {
 			},
 			{
 				id: 4,
-				title: 'rowValue3',
+				title: 'Vet bills for TC resident',
 				location: 'Traverse City, MI',
 				description:
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -49,7 +49,7 @@ exports.seed = function(knex) {
 			},
 			{
 				id: 5,
-				title: 'rowValue3',
+				title: 'Build 4 new shelters',
 				location: 'New York, NY',
 				description:
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
@@ -60,7 +60,7 @@ exports.seed = function(knex) {
 			},
 			{
 				id: 6,
-				title: 'rowValue3',
+				title: 'California Cats org',
 				location: 'Los Angeles, CA',
 				description:
 					'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
