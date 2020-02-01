@@ -20,6 +20,7 @@ const signToken = user => {
 };
 
 const validateToken = (user, password, res) => {
+	console.log(' : validateToken -> user', user);
 	if (user && bcrypt.compareSync(password, user.password)) {
 		const token = signToken(user);
 
