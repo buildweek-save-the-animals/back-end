@@ -54,7 +54,6 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	let { username, password } = req.body;
-	console.log(' : req.body', req.body);
 
 	try {
 		const user = await Users.findByUsername(username.toLowerCase());

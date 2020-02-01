@@ -15,12 +15,9 @@ const add = async user => {
 };
 
 const findByUsername = async username => {
-	return (
-		db('users')
-			.where(db.raw('LOWER(??)', ['users.username']), username)
-			// .where({ username })
-			.first()
-	);
+	return db('users')
+		.where(db.raw('LOWER(??)', ['users.username']), username)
+		.first();
 };
 
 module.exports = { findById, add, findByUsername };
