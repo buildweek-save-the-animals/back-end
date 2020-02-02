@@ -1,4 +1,4 @@
-[] GET all campaigns
+[x] GET all campaigns
 
     - [] docs
 
@@ -30,5 +30,6 @@
 
     - [] docs
 
+[] unit tests
 [x] normalize donations array to prevent it breaking FE
 [] add validation middleware
