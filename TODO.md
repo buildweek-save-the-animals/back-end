@@ -22,7 +22,7 @@
 
     - [] docs
 
-[] PUT edit campaign
+[x] PUT edit campaign
 
     - [] docs
 
@@ -37,3 +37,4 @@
 [] unit tests
 [x] normalize donations array to prevent it breaking FE
 [] add validation middleware
+[] rollback

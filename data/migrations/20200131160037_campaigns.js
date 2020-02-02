@@ -5,9 +5,7 @@ exports.up = tbl => {
 	return tbl.schema.createTable('campaigns', tbl => {
 		tbl.increments();
 
-		tbl.string('title', 128)
-			.notNullable()
-			.unique();
+		tbl.string('title', 128).notNullable();
 
 		tbl.string('location', 128).notNullable();
 
