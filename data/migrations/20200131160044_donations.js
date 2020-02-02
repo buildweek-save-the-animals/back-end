@@ -21,6 +21,8 @@ exports.up = tbl => {
 			.onDelete('CASCADE')
 			.onUpdate('CASCADE');
 
+		tbl.integer('donation_amount').notNullable();
+
 		tbl.timestamp('donated_at', { useTz: true })
 			.notNullable()
 			.defaultTo(knex.fn.now());
