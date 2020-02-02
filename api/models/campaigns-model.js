@@ -58,14 +58,12 @@ const addCampaign = async newCampaign => {
 
 const deleteCampaign = async (campaignId, token) => {
 	const { id } = token;
-	console.log(' : deleteCampaign -> id', id);
 
 	const { created_by } = await db('campaigns')
 		.where({ id: campaignId })
 		.first();
-	console.log(' : deleteCampaign -> created_by', created_by);
 
-	if (id == created_by) {
+	if (id === created_by) {
 		return db('campaigns')
 			.where({ id: campaignId })
 			.del();

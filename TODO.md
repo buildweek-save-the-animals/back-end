@@ -30,7 +30,7 @@
 
     - [] docs
 
-[] DELETE donations
+[x] DELETE donations
 
     - [] docs
 

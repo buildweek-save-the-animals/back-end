@@ -2,6 +2,8 @@ const router = require('express').Router();
 
 const Donations = require('../models/donations-model');
 
+const restricted = require('../auth/auth-middleware');
+
 // GET donations by project ID
 router.get('/:id', async (req, res) => {
 	try {
@@ -35,6 +37,18 @@ router.post('/', async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		return res.status(500).json({ errMsg: 'Error while adding new donation to database' });
+	}
+});
+
+// DELETE donation by ID
+router.delete('/:id', restricted, async (req, res) => {
+	try {
+		const deleted = await Donations.deleteDonation(req.params.id, req.token);
+
+		res.status(200).json(deleted);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ errMsg: 'Error while deleting donation from database' });
 	}
 });
 

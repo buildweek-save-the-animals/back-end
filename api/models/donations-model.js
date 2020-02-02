@@ -44,4 +44,20 @@ const addDonation = async newDonation => {
 		.first();
 };
 
-module.exports = { getDonosWithTotal, getUserDonos, addDonation };
+const deleteDonation = async (donoId, token) => {
+	const { id } = token;
+
+	const { donated_by } = await db('donations')
+		.where({ id: donoId })
+		.first();
+
+	if (id === donated_by) {
+		return db('donations')
+			.where({ id: donoId })
+			.del();
+	} else {
+		return { message: 'You do not have permission to delete this donation' };
+	}
+};
+
+module.exports = { getDonosWithTotal, getUserDonos, addDonation, deleteDonation };
