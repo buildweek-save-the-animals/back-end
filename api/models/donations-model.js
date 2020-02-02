@@ -34,4 +34,14 @@ const getUserDonos = async donated_by => {
 	return donations.length ? donations : [noDonationsMsgObject];
 };
 
-module.exports = { getDonosWithTotal, getUserDonos };
+const addDonation = async newDonation => {
+	const id = await db('donations')
+		.insert(newDonation)
+		.returning('id');
+
+	return db('donations')
+		.where({ id: id[0] })
+		.first();
+};
+
+module.exports = { getDonosWithTotal, getUserDonos, addDonation };

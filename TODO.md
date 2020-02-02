@@ -18,7 +18,7 @@
 
     - [] docs
 
-[] POST new donation
+[x] POST new donation
 
     - [] docs
 
@@ -27,6 +27,10 @@
     - [] docs
 
 [] DELETE campaign
+
+    - [] docs
+
+[] DELETE donations
 
     - [] docs
 
