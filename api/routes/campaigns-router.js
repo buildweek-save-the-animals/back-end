@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
 // POST search for campaign by title, case insensitive
 router.post('/search', async (req, res) => {
 	try {
-		const campaign = await Campaigns.searchByCampaignTitle(req.body.title.toLowerCase());
+		const campaign = await Campaigns.searchByTitle(req.body.title.toLowerCase());
 
 		campaign
 			? res.status(200).json(campaign)
@@ -47,7 +47,7 @@ router.post('/search', async (req, res) => {
 // POST add new project
 router.post('/', restricted, async (req, res) => {
 	try {
-		const campaign = await Campaigns.addCampaign(req.body);
+		const campaign = await Campaigns.add(req.body);
 
 		res.status(200).json(campaign);
 	} catch (err) {
@@ -59,12 +59,24 @@ router.post('/', restricted, async (req, res) => {
 // DELETE campaign
 router.delete('/:id', restricted, async (req, res) => {
 	try {
-		const deleted = await Campaigns.deleteCampaign(req.params.id, req.token);
+		const deleted = await Campaigns.delete(req.params.id, req.token);
 
 		res.status(200).json(deleted);
 	} catch (err) {
 		console.log(err);
 		return res.status(500).json({ errMsg: 'Error while deleting campaign from database' });
+	}
+});
+
+// PUT edit campaign
+router.put('/:id', restricted, async (req, res) => {
+	try {
+		const campaign = await Campaigns.edit(req.params.id, req.body, req.token);
+
+		res.status(200).json(campaign);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ errMsg: 'Error while editing campaign' });
 	}
 });
 

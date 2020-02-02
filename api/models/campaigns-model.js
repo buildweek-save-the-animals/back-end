@@ -4,7 +4,7 @@ const getAll = () => {
 	return db('campaigns');
 };
 
-const searchByCampaignTitle = async title => {
+const searchByTitle = async title => {
 	const campaign = await db('campaigns')
 		.where(db.raw('LOWER(??)', ['title']), title)
 		.first();
@@ -46,7 +46,7 @@ const findById = async id => {
 	};
 };
 
-const addCampaign = async newCampaign => {
+const add = async newCampaign => {
 	const id = await db('campaigns')
 		.insert(newCampaign)
 		.returning('id');
@@ -56,20 +56,38 @@ const addCampaign = async newCampaign => {
 	return addedCampaign;
 };
 
-const deleteCampaign = async (campaignId, token) => {
-	const { id } = token;
+const remove = async (id, token) => {
+	const uid = token.id;
 
 	const { created_by } = await db('campaigns')
-		.where({ id: campaignId })
+		.where({ id })
 		.first();
 
-	if (id === created_by) {
+	if (uid === created_by) {
 		return db('campaigns')
-			.where({ id: campaignId })
+			.where({ id })
 			.del();
 	} else {
 		return { message: 'You do not have permission to delete this campaign' };
 	}
 };
 
-module.exports = { findById, getAll, searchByCampaignTitle, addCampaign, deleteCampaign };
+const edit = async (id, changes, token) => {
+	const uid = token.id;
+
+	const { created_by } = await db('campaigns')
+		.where({ id })
+		.first();
+
+	if (uid === created_by) {
+		await db('campaigns')
+			.where({ id })
+			.update(changes);
+
+		return findById(id);
+	} else {
+		return { message: 'You do not have permission to edit this campaign' };
+	}
+};
+
+module.exports = { findById, getAll, searchByTitle, add, remove, edit };
