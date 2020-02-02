@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const Campaigns = require('../models/campaigns-model');
 
+// GET all campaigns
 router.get('/', async (__, res) => {
 	try {
 		const campaigns = await Campaigns.getAll();
@@ -13,6 +14,7 @@ router.get('/', async (__, res) => {
 	}
 });
 
+// GET campaign by ID
 router.get('/:id', async (req, res) => {
 	try {
 		const campaign = await Campaigns.findById(req.params.id);
@@ -23,6 +25,21 @@ router.get('/:id', async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		res.status(500).json({ errMsg: 'Error while getting campaign' });
+	}
+});
+
+// POST search for campaign by title, case insensitive
+router.post('/search', async (req, res) => {
+	console.log(' : req', req.body);
+	try {
+		const campaign = await Campaigns.searchByCampaignTitle(req.body.title.toLowerCase());
+
+		campaign
+			? res.status(200).json(campaign)
+			: res.status(401).json({ message: 'No campaign found with that title' });
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({ errMsg: 'Error while searching for campaign' });
 	}
 });
 

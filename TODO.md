@@ -2,15 +2,15 @@
 
     - [] docs
 
-[] GET campaign, search by campaign name, case insensitive
+[] GET search by campaign name, case insensitive
 
     - [] docs
 
-[] GET donations by user ID
+[x] GET donations by user ID
 
     - [] docs
 
-[] GET all donations by campaign ID with donation total
+[x] GET all donations by campaign ID with donation total
 
     - [] docs
 

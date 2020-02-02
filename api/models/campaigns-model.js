@@ -4,6 +4,14 @@ const getAll = () => {
 	return db('campaigns');
 };
 
+const searchByCampaignTitle = async title => {
+	const campaign = await db('campaigns')
+		.where(db.raw('LOWER(??)', ['title']), title)
+		.first();
+
+	return campaign;
+};
+
 // prettier-ignore
 const findById = async id => {
 	const [campaign, donations] = await Promise.all([
@@ -38,4 +46,4 @@ const findById = async id => {
 	};
 };
 
-module.exports = { findById, getAll };
+module.exports = { findById, getAll, searchByCampaignTitle };
