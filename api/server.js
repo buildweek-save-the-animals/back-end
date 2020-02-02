@@ -3,7 +3,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 const authRouter = require('../api/auth/auth-router');
-const campaignRouter = require('../api/routes/campaigns-router');
+const campaignsRouter = require('../api/routes/campaigns-router');
+const donationsRouter = require('../api/routes/donations-router');
 
 const logger = (req, __, next) => {
 	const date = new Date(Date.now());
@@ -18,7 +19,8 @@ server.use(cors());
 server.use(express.json(), logger);
 
 server.use('/auth', authRouter);
-server.use('/campaigns', campaignRouter);
+server.use('/campaigns', campaignsRouter);
+server.use('/donations', donationsRouter);
 
 server.use('/', (__, res) => {
 	res.send('Server up');

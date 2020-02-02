@@ -17,7 +17,7 @@ const validateNewUser = async (req, res, next) => {
     }
     catch (err) {
         console.log(err)
-        res.status(500).json({ errMsg: "Error while verifying new user's username"})
+        return res.status(500).json({ errMsg: "Error while verifying new user's username"})
     }
 }
 
