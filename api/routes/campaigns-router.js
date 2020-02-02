@@ -59,7 +59,7 @@ router.post('/', restricted, async (req, res) => {
 // DELETE campaign
 router.delete('/:id', restricted, async (req, res) => {
 	try {
-		const deleted = await Campaigns.delete(req.params.id, req.token);
+		const deleted = await Campaigns.remove(req.params.id, req.token);
 
 		res.status(200).json(deleted);
 	} catch (err) {
