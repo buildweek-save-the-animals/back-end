@@ -2,7 +2,7 @@
 
     - [] docs
 
-[] GET search by campaign name, case insensitive
+[x] GET search by campaign name, case insensitive
 
     - [] docs
 
@@ -14,7 +14,7 @@
 
     - [] docs
 
-[] POST new campaign
+[x] POST new campaign
 
     - [] docs
 

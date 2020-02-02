@@ -46,4 +46,14 @@ const findById = async id => {
 	};
 };
 
-module.exports = { findById, getAll, searchByCampaignTitle };
+const addCampaign = async newCampaign => {
+	const id = await db('campaigns')
+		.insert(newCampaign)
+		.returning('id');
+
+	const addedCampaign = await findById(id[0]);
+
+	return addedCampaign;
+};
+
+module.exports = { findById, getAll, searchByCampaignTitle, addCampaign };

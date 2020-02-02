@@ -30,7 +30,6 @@ router.get('/:id', async (req, res) => {
 
 // POST search for campaign by title, case insensitive
 router.post('/search', async (req, res) => {
-	console.log(' : req', req.body);
 	try {
 		const campaign = await Campaigns.searchByCampaignTitle(req.body.title.toLowerCase());
 
@@ -40,6 +39,18 @@ router.post('/search', async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		res.status(500).json({ errMsg: 'Error while searching for campaign' });
+	}
+});
+
+// POST add new project
+router.post('/', async (req, res) => {
+	try {
+		const campaign = await Campaigns.addCampaign(req.body);
+
+		res.status(200).json(campaign);
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({ errMsg: 'Error while adding new campaign to database' });
 	}
 });
 
