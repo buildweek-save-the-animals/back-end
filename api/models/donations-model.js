@@ -22,7 +22,7 @@ const getDonosWithTotal = async donated_for => {
 
 const getUserDonos = async donated_by => {
 	const donations = await db
-		.select('donations.donation_amount as amount', 'donations.donated_at')
+		.select('donations.id', 'donations.donation_amount as amount', 'donations.donated_at')
 		.from('donations')
 		.where({ donated_by });
 
