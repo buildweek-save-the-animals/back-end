@@ -10,7 +10,7 @@ router.get('/:id', async (req, res) => {
 		res.status(200).json(donations);
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ errMsg: 'Error while getting donations' });
+		return res.status(500).json({ errMsg: 'Error while getting donations' });
 	}
 });
 
@@ -22,7 +22,7 @@ router.get('/my_donations/:id', async (req, res) => {
 		res.status(200).json(donations);
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ errMsg: 'Error while getting user donations' });
+		return res.status(500).json({ errMsg: 'Error while getting user donations' });
 	}
 });
 
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 		res.status(200).json(donation);
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ errMsg: 'Error while adding new donation to database' });
+		return res.status(500).json({ errMsg: 'Error while adding new donation to database' });
 	}
 });
 

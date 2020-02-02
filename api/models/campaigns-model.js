@@ -65,7 +65,7 @@ const deleteCampaign = async (campaignId, token) => {
 		.first();
 	console.log(' : deleteCampaign -> created_by', created_by);
 
-	if (id === created_by) {
+	if (id == created_by) {
 		return db('campaigns')
 			.where({ id: campaignId })
 			.del();

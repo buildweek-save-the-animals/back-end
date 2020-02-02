@@ -26,7 +26,7 @@
 
     - [] docs
 
-[] DELETE campaign
+[x] DELETE campaign
 
     - [] docs
 

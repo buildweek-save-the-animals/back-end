@@ -12,7 +12,7 @@ router.get('/', restricted, async (__, res) => {
 		res.status(200).json(campaigns);
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ errMsg: 'Error while getting campaigns' });
+		return res.status(500).json({ errMsg: 'Error while getting campaigns' });
 	}
 });
 
@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
 			: res.status(401).json({ message: 'No campaign found with that ID' });
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ errMsg: 'Error while getting campaign' });
+		return res.status(500).json({ errMsg: 'Error while getting campaign' });
 	}
 });
 
@@ -40,7 +40,7 @@ router.post('/search', async (req, res) => {
 			: res.status(401).json({ message: 'No campaign found with that title' });
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ errMsg: 'Error while searching for campaign' });
+		return res.status(500).json({ errMsg: 'Error while searching for campaign' });
 	}
 });
 
@@ -52,7 +52,7 @@ router.post('/', restricted, async (req, res) => {
 		res.status(200).json(campaign);
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({ errMsg: 'Error while adding new campaign to database' });
+		return res.status(500).json({ errMsg: 'Error while adding new campaign to database' });
 	}
 });
 
