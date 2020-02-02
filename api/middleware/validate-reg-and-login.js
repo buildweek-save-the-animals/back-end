@@ -4,9 +4,9 @@ const Users = require('../auth/auth-model');
 const validateNewUser = async (req, res, next) => {
     const { username, password, role } = req.body;
 
-	!username && res.status(400).json({ message: 'Username required' });
-	!password && res.status(400).json({ message: 'Password required' });
-    !role && res.status(400).json({ message: 'Role required' });
+	if (!username) return res.status(400).json({ message: 'Username required' });
+	if (!password) return res.status(400).json({ message: 'Password required' });
+    if (!role) return res.status(400).json({ message: 'Role required' });
     
     try {
         const checkForUniqueness = await Users.findByUsername(username.toLowerCase())
@@ -23,8 +23,9 @@ const validateNewUser = async (req, res, next) => {
 
 const validateLogin = (req, res, next) => {
 	const { username, password } = req.body;
-	!username && res.status(400).json({ message: 'Username required' });
-	!password && res.status(400).json({ message: 'Password required' });
+
+	if (!username) return res.status(400).json({ message: 'Username required' });
+	if (!password) return res.status(400).json({ message: 'Password required' });
 	next();
 };
 
