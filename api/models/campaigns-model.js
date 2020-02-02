@@ -1,16 +1,15 @@
 const db = require('../../data/dbConfig');
 
+// prettier-ignore
 const findById = async id => {
 	const [campaign, donations] = await Promise.all([
-		db
-			.select('campaigns.*', 'users.username as created_by')
+		db.select('campaigns.*', 'users.username as created_by')
 			.from('campaigns')
 			.where(db.raw('campaigns.id = ?', [id]))
 			.join('users', 'campaigns.created_by', 'users.id')
 			.first(),
 
-		db
-			.select(
+		db.select(
 				'donations.donation_amount as donation',
 				'donations.donated_at',
 				'users.username as donated_by'
