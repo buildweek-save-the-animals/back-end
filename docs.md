@@ -1,55 +1,266 @@
 ## Endpoints
 
 -  ### Base URL: https://bw-save-the-animals.herokuapp.com
--  ### Login and register
+-  # _Login and register_
 
-   | Method | URL (_base:_ `/auth`) |                                              Description |
-   | :----- | :-------------------: | -------------------------------------------------------: |
-   | POST   |     **`/login`**      |                   User login, returns username and token |
-   | POST   |    **`/register`**    | User registration, returns new user's username and token |
+| Method |         URL          |                                              Description |
+| :----- | :------------------: | -------------------------------------------------------: |
+| POST   |  **`/auth/login`**   |                   User login, returns username and token |
+| POST   | **`/auth/register`** | User registration, returns new user's username and token |
 
-   _Example response:_
+_Example response:_
 
-   ```
+```
+ {
+     "uid": integer, (user ID)
+     "message": string,
+     "token": JWT
+ }
+```
+
+-  # _Campaigns_
+
+| Method |         URL          |                                 Description |
+| :----- | :------------------: | ------------------------------------------: |
+| GET    | **`/campaigns/:id`** | Find campaign by ID with array of donations |
+
+_Example response:_
+
+```
+{
+   "id": integer,
+   "title": string,
+   "location": string,
+   "description": string,
+   "urgency": string, ("low", "medium", or "high")
+   "funding_goal": integer,
+   "created_at": datetime,
+   "created_by": string, (username)
+   "total_donations": [
     {
-        "uid": 7,
-        "message": "Welcome back, Mike",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1pa2UiLCJyb2xlIjoib3JnYW5pemF0aW9uIiwiaWF0IjoxNTgwNTIzNjY4LCJleHAiOjE1ODA2MTAwNjh9.Ma9DFXwRlUGcohphZW9GJ2SdXlHrmboocvJzk3JJ-uM"
+     "donation": integer,
+     "donated_at": datetime,
+     "donated_by": string (username)
+    },
+    {
+     "donation": integer,
+     "donated_at": datetime,
+     "donated_by": string (username)
     }
-   ```
+  ]
+}
+```
 
--  ### Campaigns
+| Method |        URL        |                               Description |
+| :----- | :---------------: | ----------------------------------------: |
+| GET    | **`/campaigns/`** | Get all campaigns with array of donations |
 
-   | Method | URL (_base:_ `/campaigns`) |                                                   Description |
-   | :----- | :------------------------: | ------------------------------------------------------------: |
-   | GET    |         **`/:id`**         | Find campaign by ID, returns campaign with array of donations |
+_Example response:_
 
-   _Example response:_
+```
+[
+  {
+    "id": integer,
+    "title": string,
+    "location": string,
+    "description": string,
+    "urgency": string, ("low", "medium", or "high")
+    "funding_goal": integer,
+    "created_at": datetime,
+    "created_by": integer (user ID)
+  },
+  {
+    "id": integer,
+    "title": string,
+    "location": string,
+    "description": string,
+    "urgency": string, ("low", "medium", or "high")
+    "funding_goal": integer,
+    "created_at": datetime,
+    "created_by": integer (user ID)
+  },
+  {
+    "id": integer,
+    "title": string,
+    "location": string,
+    "description": string,
+    "urgency": string, ("low", "medium", or "high")
+    "funding_goal": integer,
+    "created_at": datetime,
+    "created_by": integer (user ID)
+  }
+]
+```
 
-   ```
-   {
-      "id": 2,
-      "title": "Stray dogs in Ludington",
-      "location": "Ludington, MI",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "urgency": "low",
-      "funding_goal": 10000,
-      "created_at": "Sat Feb 01 2020",
-      "created_by": "jackson",
-      "total_donations": [
-       {
-        "donation": 25,
-        "donated_at": "Sat Feb 01 2020",
-        "donated_by": "mark"
-       },
-       {
-        "donation": 250,
-        "donated_at": "Sat Feb 01 2020",
-        "donated_by": "mark"
-       }
-     ]
-   }
-   ```
+| Method |           URL           |                    Description |
+| :----- | :---------------------: | -----------------------------: |
+| POST   | **`/campaigns/search`** | Search for a campaign by title |
+
+_*Required:*_
+
+```
+{
+	"title": string ( case insensitive )
+}
+```
+
+_Example response:_
+
+```
+{
+  "id": integer,
+  "title": string,
+  "location": string,
+  "description": string,
+  "urgency": string, ("low", "medium", or "high")
+  "funding_goal": integer,
+  "created_at": datetime,
+  "created_by": integer (user ID)
+}
+```
+
+| Method |        URL        |      Description |
+| :----- | :---------------: | ---------------: |
+| POST   | **`/campaigns/`** | Add new campaign |
+
+_*Required:*_
+
+```
+{
+  "title": string,
+  "location": string,
+  "description: string,
+  "urgency": string, ("low", "medium", or "high")
+  "funding_goal": integer,
+  "created_by": integer (user ID)
+}
+```
+
+_Example response:_
+
+```
+{
+  "id": integer,
+  "title": string,
+  "location": string,
+  "description": string,
+  "urgency": string, ("low", "medium" or "high")
+  "funding_goal": integer,
+  "created_at": datetime,
+  "created_by": string, (username)
+  "total_donations": [
+    {
+      "donation": integer,
+      "donated_at": string,
+      "donated_by": string
+    }
+  ]
+}
+```
+
+| Method |         URL          |   Description |
+| :----- | :------------------: | ------------: |
+| PUT    | **`/campaigns/:id`** | Edit campaign |
+
+### **Must be creator of campaign to edit it**
+
+```
+{
+    (optional) "title": string,
+    (optional) "location": string,
+    (optional) "description": string,
+    (optional) "urgency": string, ("low", "medium", or "high")
+    (optional) "funding_goal": integer
+}
+```
+
+| Method |         URL          |          Description |
+| :----- | :------------------: | -------------------: |
+| DELETE | **`/campaigns/:id`** | Delete project by ID |
+
+### **Must be creator of campaign to delete it**
+
+_Example response:_ `1`
+
+-  # _Donations_
+
+| Method |         URL          |                      Description |
+| :----- | :------------------: | -------------------------------: |
+| GET    | **`/donations/:id`** | Get all donations by campaign ID |
+
+_Example response:_
+
+```{
+  "total": integer,
+  "donations": [
+    {
+      "amount": integer,
+      "donated_by": string, (username)
+      "donated_at": datetime
+    },
+    {
+      "amount": integer,
+      "donated_by": string, (username)
+      "donated_at": datetime
+    }
+  ]
+}
+```
+
+# Get all donations by user ID
+
+| Method |         URL          |                  Description |
+| :----- | :------------------: | ---------------------------: |
+| GET    | **`/donations/:id`** | Get all donations for a user |
+
+_Example response:_
+
+```
+[
+  {
+    "id": integer,
+    "amount": integer,
+    "donated_at": datetime
+  },
+  {
+    "id": integer,
+    "amount": integer,
+    "donated_at": datetime
+  }
+]
+```
+
+| Method |         URL          |        Description |
+| :----- | :------------------: | -----------------: |
+| POST   | **`/donations/:id`** | Add a new donation |
+
+_*Required:*_
+
+```
+{
+  "donated_by": integer, (user ID)
+	"donated_for": integer,
+	"donation_amount": integer
+}
+```
+
+_Example response:_
+
+```
+{
+  "id": 14,
+  "donated_by": integer,
+  "donated_for": integer,
+  "donation_amount": integer,
+  "donated_at": "2020-02-02T23:11:30.540Z"
+}
+```
+
+| Method |         URL          |     Description |
+| :----- | :------------------: | --------------: |
+| DELETE | **`/donations/:id`** | Delete donation |
+
+_Example response:_ `1`
 
 #### DB Schema:
 
