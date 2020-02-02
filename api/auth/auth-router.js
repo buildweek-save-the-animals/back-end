@@ -8,6 +8,7 @@ const { validateNewUser, validateLogin } = require('../middleware/validate-reg-a
 
 const signToken = user => {
 	const payload = {
+		id: user.id,
 		username: user.username,
 		role: user.role
 	};

@@ -2,8 +2,10 @@ const router = require('express').Router();
 
 const Campaigns = require('../models/campaigns-model');
 
+const restricted = require('../auth/auth-middleware');
+
 // GET all campaigns
-router.get('/', async (__, res) => {
+router.get('/', restricted, async (__, res) => {
 	try {
 		const campaigns = await Campaigns.getAll();
 
@@ -43,7 +45,7 @@ router.post('/search', async (req, res) => {
 });
 
 // POST add new project
-router.post('/', async (req, res) => {
+router.post('/', restricted, async (req, res) => {
 	try {
 		const campaign = await Campaigns.addCampaign(req.body);
 
@@ -51,6 +53,18 @@ router.post('/', async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		res.status(500).json({ errMsg: 'Error while adding new campaign to database' });
+	}
+});
+
+// DELETE campaign
+router.delete('/:id', restricted, async (req, res) => {
+	try {
+		const deleted = await Campaigns.deleteCampaign(req.params.id, req.token);
+
+		res.status(200).json(deleted);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ errMsg: 'Error while deleting campaign from database' });
 	}
 });
 
