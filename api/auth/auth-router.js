@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 
 const Users = require('./auth-model');
 
+const { validateNewUser, validateLogin } = require('../middleware/validate-reg-and-login');
+
 const signToken = user => {
 	const payload = {
 		username: user.username,
@@ -32,7 +34,7 @@ const validateToken = (user, password, res) => {
 	res.status(401).json({ message: 'Invalid credentials' });
 };
 
-router.post('/register', async (req, res) => {
+router.post('/register', validateNewUser, async (req, res) => {
 	let user = req.body;
 	const hash = bcrypt.hashSync(user.password, 6);
 	user.password = hash;
@@ -52,7 +54,7 @@ router.post('/register', async (req, res) => {
 	}
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', validateLogin, async (req, res) => {
 	let { username, password } = req.body;
 
 	try {

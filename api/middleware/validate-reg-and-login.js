@@ -21,4 +21,11 @@ const validateNewUser = async (req, res, next) => {
     }
 }
 
-module.exports = { validateNewUser };
+const validateLogin = (req, res, next) => {
+	const { username, password } = req.body;
+	!username && res.status(400).json({ message: 'Username required' });
+	!password && res.status(400).json({ message: 'Password required' });
+	next();
+};
+
+module.exports = { validateNewUser, validateLogin };
