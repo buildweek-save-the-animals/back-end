@@ -8,7 +8,8 @@ exports.seed = function(knex) {
 			{ id: 3, donated_by: 4, donated_for: 1, donation_amount: 100, donated_at: date.toDateString() },
 			{ id: 4, donated_by: 3, donated_for: 6, donation_amount: 225, donated_at: date.toDateString() },
 			{ id: 5, donated_by: 2, donated_for: 5, donation_amount: 200, donated_at: date.toDateString() },
-			{ id: 6, donated_by: 1, donated_for: 4, donation_amount: 350, donated_at: date.toDateString() }
+			{ id: 6, donated_by: 1, donated_for: 4, donation_amount: 350, donated_at: date.toDateString() },
+			{ id: 7, donated_by: 5, donated_for: 2, donation_amount: 250, donated_at: date.toDateString() }
 		]);
 	});
 };
