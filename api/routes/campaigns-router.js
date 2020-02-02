@@ -2,6 +2,17 @@ const router = require('express').Router();
 
 const Campaigns = require('../models/campaigns-model');
 
+router.get('/', async (__, res) => {
+	try {
+		const campaigns = await Campaigns.getAll();
+
+		res.status(200).json(campaigns);
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({ errMsg: 'Error while getting campaigns' });
+	}
+});
+
 router.get('/:id', async (req, res) => {
 	try {
 		const campaign = await Campaigns.findById(req.params.id);

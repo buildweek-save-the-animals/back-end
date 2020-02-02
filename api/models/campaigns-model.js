@@ -1,5 +1,9 @@
 const db = require('../../data/dbConfig');
 
+const getAll = () => {
+	return db('campaigns');
+};
+
 // prettier-ignore
 const findById = async id => {
 	const [campaign, donations] = await Promise.all([
@@ -34,4 +38,4 @@ const findById = async id => {
 	};
 };
 
-module.exports = { findById };
+module.exports = { findById, getAll };
