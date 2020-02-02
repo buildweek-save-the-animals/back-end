@@ -20,7 +20,13 @@ const findById = async id => {
 			.orderBy('donated_at', 'desc')
 	]);
 
-	const total_donations = donations.length ? donations : ['No donations for this campaign yet'];
+	const noDonationsMsgObject = {
+		donation: 'N/A',
+		donated_at: 'N/A',
+		donated_by: 'No donations for this campaign yet'
+	}
+
+	const total_donations = donations.length ? donations : [noDonationsMsgObject];
 
 	return {
 		...campaign,
