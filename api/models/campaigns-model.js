@@ -25,7 +25,7 @@ const findById = async id => {
 	]);
 
 	const noDonationsMsgObject = {
-		donation: 'N/A',
+		donation: 0,
 		donated_at: 'N/A',
 		donated_by: 'No donations for this campaign yet'
 	};

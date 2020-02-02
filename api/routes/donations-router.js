@@ -13,4 +13,15 @@ router.get('/:id', async (req, res) => {
 	}
 });
 
+router.get('/my_donations/:id', async (req, res) => {
+	try {
+		const donations = await Donations.getUserDonos(req.params.id);
+
+		res.status(200).json(donations);
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({ errMsg: 'Error while getting user donations' });
+	}
+});
+
 module.exports = router;
