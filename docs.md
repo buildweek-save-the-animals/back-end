@@ -28,27 +28,29 @@
 
    ```
    {
-   "id": 2,
-   "title": "Stray dogs in Ludington",
-   "location": "Ludington, MI",
-   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-   "urgency": "low",
-   "funding_goal": 10000,
-   "created_at": "Sat Feb 01 2020",
-   "created_by": "jackson",
-   "total_donations": [
-    {
+    "id": 2,
+    "title": "Stray dogs in Ludington",
+    "location": "Ludington, MI",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "urgency": "low",
+    "funding_goal": 10000,
+    "created_at": "Sat Feb 01 2020",
+    "created_by": "jackson",
+    "total_donations": [
+     {
       "donation": 25,
       "donated_at": "Sat Feb 01 2020",
       "donated_by": "mark"
-    },
-    {
+     },
+     {
       "donation": 250,
       "donated_at": "Sat Feb 01 2020",
       "donated_by": "mark"
-    }
-   ]
+     }
+    ]
    }
    ```
+
+#### DB Schema:
 
 ![View DB Schema Image](schema.JPG)
