@@ -3,19 +3,56 @@
 -  ### Base URL: https://bw-save-the-animals.herokuapp.com
 -  # _Login and register_
 
-| Method |         URL          |                                              Description |
-| :----- | :------------------: | -------------------------------------------------------: |
-| POST   |  **`/auth/login`**   |                   User login, returns username and token |
-| POST   | **`/auth/register`** | User registration, returns new user's username and token |
+| Method |        URL        |                            Description |
+| :----- | :---------------: | -------------------------------------: |
+| POST   | **`/auth/login`** | User login, returns username and token |
+
+_*Required:*_
+
+```
+{
+  "username": string,
+  "password": string
+}
+```
 
 _Example response:_
 
 ```
- {
-     "uid": integer, (user ID)
-     "message": string,
-     "token": JWT
- }
+
+{
+"uid": integer, (user ID)
+"message": string,
+"token": JWT
+}
+
+```
+
+| Method |         URL          |                                              Description |
+| :----- | :------------------: | -------------------------------------------------------: |
+| POST   | **`/auth/register`** | User registration, returns new user's username and token |
+
+_*Required:*_
+
+```
+
+{
+"username": string,
+"password": string
+"role": string ("low", "medium", or "high")
+}
+```
+
+_Example response:_
+
+```
+
+{
+"uid": integer, (user ID)
+"message": string,
+"token": JWT
+}
+
 ```
 
 -  # _Campaigns_
@@ -27,28 +64,30 @@ _Example response:_
 _Example response:_
 
 ```
+
 {
-   "id": integer,
-   "title": string,
-   "location": string,
-   "description": string,
-   "urgency": string, ("low", "medium", or "high")
-   "funding_goal": integer,
-   "created_at": datetime,
-   "created_by": string, (username)
-   "total_donations": [
-    {
-     "donation": integer,
-     "donated_at": datetime,
-     "donated_by": string (username)
-    },
-    {
-     "donation": integer,
-     "donated_at": datetime,
-     "donated_by": string (username)
-    }
-  ]
+"id": integer,
+"title": string,
+"location": string,
+"description": string,
+"urgency": string, ("low", "medium", or "high")
+"funding_goal": integer,
+"created_at": datetime,
+"created_by": string, (username)
+"total_donations": [
+{
+"donation": integer,
+"donated_at": datetime,
+"donated_by": string (username)
+},
+{
+"donation": integer,
+"donated_at": datetime,
+"donated_by": string (username)
 }
+]
+}
+
 ```
 
 | Method |        URL        |                               Description |
@@ -58,38 +97,40 @@ _Example response:_
 _Example response:_
 
 ```
+
 [
-  {
-    "id": integer,
-    "title": string,
-    "location": string,
-    "description": string,
-    "urgency": string, ("low", "medium", or "high")
-    "funding_goal": integer,
-    "created_at": datetime,
-    "created_by": integer (user ID)
-  },
-  {
-    "id": integer,
-    "title": string,
-    "location": string,
-    "description": string,
-    "urgency": string, ("low", "medium", or "high")
-    "funding_goal": integer,
-    "created_at": datetime,
-    "created_by": integer (user ID)
-  },
-  {
-    "id": integer,
-    "title": string,
-    "location": string,
-    "description": string,
-    "urgency": string, ("low", "medium", or "high")
-    "funding_goal": integer,
-    "created_at": datetime,
-    "created_by": integer (user ID)
-  }
+{
+"id": integer,
+"title": string,
+"location": string,
+"description": string,
+"urgency": string, ("low", "medium", or "high")
+"funding_goal": integer,
+"created_at": datetime,
+"created_by": integer (user ID)
+},
+{
+"id": integer,
+"title": string,
+"location": string,
+"description": string,
+"urgency": string, ("low", "medium", or "high")
+"funding_goal": integer,
+"created_at": datetime,
+"created_by": integer (user ID)
+},
+{
+"id": integer,
+"title": string,
+"location": string,
+"description": string,
+"urgency": string, ("low", "medium", or "high")
+"funding_goal": integer,
+"created_at": datetime,
+"created_by": integer (user ID)
+}
 ]
+
 ```
 
 | Method |           URL           |                    Description |
@@ -99,24 +140,28 @@ _Example response:_
 _*Required:*_
 
 ```
+
 {
-	"title": string ( case insensitive )
+"title": string ( case insensitive )
 }
+
 ```
 
 _Example response:_
 
 ```
+
 {
-  "id": integer,
-  "title": string,
-  "location": string,
-  "description": string,
-  "urgency": string, ("low", "medium", or "high")
-  "funding_goal": integer,
-  "created_at": datetime,
-  "created_by": integer (user ID)
+"id": integer,
+"title": string,
+"location": string,
+"description": string,
+"urgency": string, ("low", "medium", or "high")
+"funding_goal": integer,
+"created_at": datetime,
+"created_by": integer (user ID)
 }
+
 ```
 
 | Method |        URL        |      Description |
@@ -126,36 +171,40 @@ _Example response:_
 _*Required:*_
 
 ```
+
 {
-  "title": string,
-  "location": string,
-  "description: string,
-  "urgency": string, ("low", "medium", or "high")
-  "funding_goal": integer,
-  "created_by": integer (user ID)
+"title": string,
+"location": string,
+"description: string,
+"urgency": string, ("low", "medium", or "high")
+"funding_goal": integer,
+"created_by": integer (user ID)
 }
+
 ```
 
 _Example response:_
 
 ```
+
 {
-  "id": integer,
-  "title": string,
-  "location": string,
-  "description": string,
-  "urgency": string, ("low", "medium" or "high")
-  "funding_goal": integer,
-  "created_at": datetime,
-  "created_by": string, (username)
-  "total_donations": [
-    {
-      "donation": integer,
-      "donated_at": string,
-      "donated_by": string
-    }
-  ]
+"id": integer,
+"title": string,
+"location": string,
+"description": string,
+"urgency": string, ("low", "medium" or "high")
+"funding_goal": integer,
+"created_at": datetime,
+"created_by": string, (username)
+"total_donations": [
+{
+"donation": integer,
+"donated_at": string,
+"donated_by": string
 }
+]
+}
+
 ```
 
 | Method |         URL          |   Description |
@@ -165,13 +214,15 @@ _Example response:_
 ### **Must be creator of campaign to edit it**
 
 ```
+
 {
-    (optional) "title": string,
-    (optional) "location": string,
-    (optional) "description": string,
-    (optional) "urgency": string, ("low", "medium", or "high")
-    (optional) "funding_goal": integer
+(optional) "title": string,
+(optional) "location": string,
+(optional) "description": string,
+(optional) "urgency": string, ("low", "medium", or "high")
+(optional) "funding_goal": integer
 }
+
 ```
 
 | Method |         URL          |          Description |
