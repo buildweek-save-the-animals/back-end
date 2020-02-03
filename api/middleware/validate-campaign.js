@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
     if (!created_by) return res.status(400).json({ message: 'Please include the user ID of who created this campaign' });
     
     if (urgency !== ('low' || 'medium' || 'high')) {
-        return (res.status(400).json({ message: 'Please set urgency to either "low", "medium", or "high" only' }))
+        return (res.status(400).json({ message: "Please set urgency to either 'low', 'medium', or 'high' only" }))
     };
 
     next();
