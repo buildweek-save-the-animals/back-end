@@ -21,7 +21,7 @@ _Example response:_
 ```
 
 {
-  "uid": integer, (user ID)
+  "uid": integer, ( user ID )
   "message": string,
   "token": JWT
 }
@@ -39,7 +39,7 @@ _*Required:*_
 {
   "username": string,
   "password": string
-  "role": string ("low", "medium", or "high")
+  "role": string ( "low", "medium", or "high" )
 }
 ```
 
@@ -48,7 +48,7 @@ _Example response:_
 ```
 
 {
-  "uid": integer, (user ID)
+  "uid": integer, ( user ID )
   "message": string,
   "token": JWT
 }
@@ -70,20 +70,20 @@ _Example response:_
   "title": string,
   "location": string,
   "description": string,
-  "urgency": string, ("low", "medium", or "high")
+  "urgency": string, ( "low", "medium", or "high" )
   "funding_goal": integer,
   "created_at": datetime,
-  "created_by": string, (username)
+  "created_by": string, ( username )
   "total_donations": [
     {
       "donation": integer,
       "donated_at": datetime,
-      "donated_by": string (username)
+      "donated_by": string ( username )
     },
     {
       "donation": integer,
       "donated_at": datetime,
-      "donated_by": string (username)
+      "donated_by": string ( username )
     }
   ]
 }
@@ -104,30 +104,30 @@ _Example response:_
     "title": string,
     "location": string,
     "description": string,
-    "urgency": string, ("low", "medium", or "high")
+    "urgency": string, ( "low", "medium", or "high" )
     "funding_goal": integer,
     "created_at": datetime,
-    "created_by": integer (user ID)
+    "created_by": integer ( user ID )
   },
   {
     "id": integer,
     "title": string,
     "location": string,
     "description": string,
-    "urgency": string, ("low", "medium", or "high")
+    "urgency": string, ( "low", "medium", or "high" )
     "funding_goal": integer,
     "created_at": datetime,
-    "created_by": integer (user ID)
+    "created_by": integer ( user ID )
   },
   {
     "id": integer,
     "title": string,
     "location": string,
     "description": string,
-    "urgency": string, ("low", "medium", or "high")
+    "urgency": string, ( "low", "medium", or "high" )
     "funding_goal": integer,
     "created_at": datetime,
-    "created_by": integer (user ID)
+    "created_by": integer ( user ID )
   }
 ]
 
@@ -156,10 +156,10 @@ _Example response:_
   "title": string,
   "location": string,
   "description": string,
-  "urgency": string, ("low", "medium", or "high")
+  "urgency": string, ( "low", "medium", or "high" )
   "funding_goal": integer,
   "created_at": datetime,
-  "created_by": integer (user ID)
+  "created_by": integer ( user ID )
 }
 
 ```
@@ -176,9 +176,9 @@ _*Required:*_
   "title": string,
   "location": string,
   "description: string,
-  "urgency": string, ("low", "medium", or "high")
+  "urgency": string, ( "low", "medium", or "high" )
   "funding_goal": integer,
-  "created_by": integer (user ID)
+  "created_by": integer ( user ID )
 }
 
 ```
@@ -192,10 +192,10 @@ _Example response:_
   "title": string,
   "location": string,
   "description": string,
-  "urgency": string, ("low", "medium" or "high")
+  "urgency": string, ( "low", "medium" or "high" )
   "funding_goal": integer,
   "created_at": datetime,
-  "created_by": string, (username)
+  "created_by": string, ( username )
   "total_donations": [
     {
       "donation": integer,
@@ -216,11 +216,11 @@ _Example response:_
 ```
 
 {
-  (optional) "title": string,
-  (optional) "location": string,
-  (optional) "description": string,
-  (optional) "urgency": string, ("low", "medium", or "high")
-  (optional) "funding_goal": integer
+  ( optional ) "title": string,
+  ( optional ) "location": string,
+  ( optional ) "description": string,
+  ( optional ) "urgency": string, ( "low", "medium", or "high" )
+  ( optional ) "funding_goal": integer
 }
 
 ```
@@ -246,12 +246,12 @@ _Example response:_
   "donations": [
     {
       "amount": integer,
-      "donated_by": string, (username)
+      "donated_by": string, ( username )
       "donated_at": datetime
     },
     {
       "amount": integer,
-      "donated_by": string, (username)
+      "donated_by": string, ( username )
       "donated_at": datetime
     }
   ]
@@ -289,7 +289,7 @@ _*Required:*_
 
 ```
 {
-  "donated_by": integer, (user ID)
+  "donated_by": integer, ( user ID )
 	"donated_for": integer,
 	"donation_amount": integer
 }

@@ -4,8 +4,10 @@ const Donations = require('../models/donations-model');
 
 const restricted = require('../auth/auth-middleware');
 
+const validateData = require('../middleware/validate-donation');
+
 // GET donations by project ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', restricted, async (req, res) => {
 	try {
 		const donations = await Donations.getDonosWithTotal(req.params.id);
 
@@ -17,7 +19,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // GET donations by user ID
-router.get('/my_donations/:id', async (req, res) => {
+router.get('/my_donations/:id', restricted, async (req, res) => {
 	try {
 		const donations = await Donations.getUserDonos(req.params.id);
 
@@ -29,7 +31,7 @@ router.get('/my_donations/:id', async (req, res) => {
 });
 
 // POST new donation
-router.post('/', async (req, res) => {
+router.post('/', restricted, validateData, async (req, res) => {
 	try {
 		const donation = await Donations.addDonation(req.body);
 

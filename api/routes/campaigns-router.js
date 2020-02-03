@@ -4,6 +4,8 @@ const Campaigns = require('../models/campaigns-model');
 
 const restricted = require('../auth/auth-middleware');
 
+const validateData = require('../middleware/validate-campaign');
+
 // GET all campaigns
 router.get('/', restricted, async (__, res) => {
 	try {
@@ -17,7 +19,7 @@ router.get('/', restricted, async (__, res) => {
 });
 
 // GET campaign by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', restricted, async (req, res) => {
 	try {
 		const campaign = await Campaigns.findById(req.params.id);
 
@@ -31,7 +33,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST search for campaign by title, case insensitive
-router.post('/search', async (req, res) => {
+router.post('/search', restricted, async (req, res) => {
 	try {
 		const campaign = await Campaigns.searchByTitle(req.body.title.toLowerCase());
 
@@ -45,7 +47,7 @@ router.post('/search', async (req, res) => {
 });
 
 // POST add new project
-router.post('/', restricted, async (req, res) => {
+router.post('/', restricted, validateData, async (req, res) => {
 	try {
 		const campaign = await Campaigns.add(req.body);
 
