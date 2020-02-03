@@ -40,10 +40,7 @@ const findById = async id => {
 
 	const total_donations = donations.length ? donations : [noDonationsMsgObject];
 
-	return {
-		...campaign,
-		total_donations
-	};
+	return campaign ? { ...campaign, total_donations } : undefined;
 };
 
 const add = async newCampaign => {

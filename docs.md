@@ -264,4 +264,4 @@ _Example response:_ `1`
 
 #### DB Schema:
 
-![View DB Schema Image](schema.JPG)
+![View DB Schema Image](/data/schema.JPG)
