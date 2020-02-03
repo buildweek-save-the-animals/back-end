@@ -23,7 +23,7 @@ server.use('/campaigns', campaignsRouter);
 server.use('/donations', donationsRouter);
 
 server.use('/', (__, res) => {
-	res.send('Server up');
+	res.status(200).json({ message: 'Server up' });
 });
 
 module.exports = server;
