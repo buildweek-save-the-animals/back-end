@@ -55,6 +55,8 @@ _Example response:_
 
 ```
 
+# **All other endpoints require authorization header with valid JWT token**
+
 -  # _Campaigns_
 
 | Method |         URL          |                                 Description |
