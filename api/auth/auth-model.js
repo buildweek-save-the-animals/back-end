@@ -21,7 +21,9 @@ const findByUsername = username => {
 };
 
 const findByEmail = email => {
-	return db('users').where(db.raw('LOWER(??)', ['users.email']), email);
+	return db('users')
+		.where(db.raw('LOWER(??)', ['users.email']), email)
+		.first();
 };
 
 module.exports = { findById, add, findByUsername, findByEmail };

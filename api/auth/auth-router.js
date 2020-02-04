@@ -58,13 +58,24 @@ router.post('/register', validateNewUser, async (req, res) => {
 router.post('/login', validateLogin, async (req, res) => {
 	let { username, password } = req.body;
 
-	try {
-		const user = await Users.findByUsername(username.toLowerCase());
+	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(username)) {
+		try {
+			const user = await Users.findByUsername(username.toLowerCase());
 
-		validateToken(user, password, res);
-	} catch (err) {
-		console.log(err);
-		res.status(500).json({ errMsg: 'Error while logging in' });
+			validateToken(user, password, res);
+		} catch (err) {
+			console.log(err);
+			res.status(500).json({ errMsg: 'Error while logging in' });
+		}
+	} else {
+		try {
+			const user = await Users.findByEmail(username.toLowerCase());
+
+			validateToken(user, password, res);
+		} catch (err) {
+			console.log(err);
+			res.status(500).json({ errMsg: 'Error while logging in' });
+		}
 	}
 });
 
