@@ -5,14 +5,16 @@ const db = require('../../data/dbConfig');
 
 const user1 = {
 	username: 'foo',
+	email: 'foo@gmail.com',
 	password: 'bar',
-	role: 'organization'
+	radio: 'organization'
 };
 
 const user2 = {
 	username: 'test',
+	email: 'test@gmail.com',
 	password: 'user',
-	role: 'organization'
+	radio: 'organization'
 };
 
 beforeEach(async () => {
@@ -48,7 +50,7 @@ describe('auth/user routes', () => {
 		test('should require username', async () => {
 			const res = await request(server)
 				.post('/auth/register')
-				.send({ password: 'foo', role: 'support' });
+				.send({ password: 'foo', radio: 'donor' });
 
 			expect(res.status).toBe(400);
 			expect(res.type).toBe('application/json');
@@ -58,7 +60,7 @@ describe('auth/user routes', () => {
 		test('should require password', async () => {
 			const res = await request(server)
 				.post('/auth/register')
-				.send({ username: 'foo', role: 'support' });
+				.send({ username: 'foo', radio: 'donor' });
 
 			expect(res.status).toBe(400);
 			expect(res.type).toBe('application/json');
@@ -80,7 +82,8 @@ describe('auth/user routes', () => {
 		test('should return JSON containing user', async () => {
 			await request(server)
 				.post('/auth/register')
-				.send({ username: 'testing', password: 'login', role: 'support' });
+				.send({ username: 'testing', email: 'testing@gmail.com', password: 'login', radio: 'donor' });
+
 			const res = await request(server)
 				.post('/auth/login')
 				.send({ username: 'testing', password: 'login' });
