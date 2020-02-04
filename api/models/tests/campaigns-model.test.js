@@ -1,1 +1,0 @@
-describe('campaigns model', () => {});
