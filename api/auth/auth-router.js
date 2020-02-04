@@ -26,7 +26,7 @@ const validateToken = (user, password, res) => {
 	if (user && bcrypt.compareSync(password, user.password)) {
 		const token = signToken(user);
 
-		res.status(200).json({
+		return res.status(200).json({
 			uid: user.id,
 			message: `Welcome back, ${user.username}`,
 			token
