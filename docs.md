@@ -1,5 +1,3 @@
-# testing
-
 ## Endpoints
 
 -  ### Base URL: https://bw-save-the-animals.herokuapp.com
