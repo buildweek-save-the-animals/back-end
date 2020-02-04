@@ -13,7 +13,7 @@ const signToken = user => {
 		role: user.role
 	};
 
-	const secret = process.env.JWT_SECRET;
+	const secret = process.env.JWT_SECRET || 'testSectet';
 
 	const options = {
 		expiresIn: '24h'
@@ -26,7 +26,7 @@ const validateToken = (user, password, res) => {
 	if (user && bcrypt.compareSync(password, user.password)) {
 		const token = signToken(user);
 
-		res.status(200).json({
+		return res.status(200).json({
 			uid: user.id,
 			message: `Welcome back, ${user.username}`,
 			token
@@ -58,13 +58,24 @@ router.post('/register', validateNewUser, async (req, res) => {
 router.post('/login', validateLogin, async (req, res) => {
 	let { username, password } = req.body;
 
-	try {
-		const user = await Users.findByUsername(username.toLowerCase());
+	if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(username)) {
+		try {
+			const user = await Users.findByUsername(username.toLowerCase());
 
-		validateToken(user, password, res);
-	} catch (err) {
-		console.log(err);
-		res.status(500).json({ errMsg: 'Error while logging in' });
+			validateToken(user, password, res);
+		} catch (err) {
+			console.log(err);
+			res.status(500).json({ errMsg: 'Error while logging in' });
+		}
+	} else {
+		try {
+			const user = await Users.findByEmail(username.toLowerCase());
+
+			validateToken(user, password, res);
+		} catch (err) {
+			console.log(err);
+			res.status(500).json({ errMsg: 'Error while logging in' });
+		}
 	}
 });
 
