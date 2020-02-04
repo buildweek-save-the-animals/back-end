@@ -3,13 +3,11 @@ const request = require('supertest');
 const server = require('./server');
 
 describe('server.js', () => {
-	// describe('env', () => {
 	test('it should set the test environment', () => {
 		const env = process.env.NODE_ENV;
 
 		expect(env).toBe('testing');
 	});
-	// });
 
 	test('it should return an OK status code', async () => {
 		const res = await request(server).get('/');

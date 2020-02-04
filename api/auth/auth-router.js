@@ -13,7 +13,7 @@ const signToken = user => {
 		role: user.role
 	};
 
-	const secret = process.env.JWT_SECRET;
+	const secret = process.env.JWT_SECRET || 'testSectet';
 
 	const options = {
 		expiresIn: '24h'
