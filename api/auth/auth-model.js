@@ -14,10 +14,14 @@ const add = async user => {
 	return findById(id[0]).first();
 };
 
-const findByUsername = async username => {
+const findByUsername = username => {
 	return db('users')
 		.where(db.raw('LOWER(??)', ['users.username']), username)
 		.first();
 };
 
-module.exports = { findById, add, findByUsername };
+const findByEmail = email => {
+	return db('users').where(db.raw('LOWER(??)', ['users.email']), email);
+};
+
+module.exports = { findById, add, findByUsername, findByEmail };

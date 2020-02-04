@@ -6,9 +6,13 @@ exports.up = tbl => {
 			.notNullable()
 			.unique();
 
+		tbl.string('email', 128)
+			.notNullable()
+			.unique();
+
 		tbl.string('password', 128).notNullable();
 
-		tbl.string('role', 128).notNullable();
+		tbl.string('radio', 128).notNullable();
 	});
 };
 
