@@ -2,11 +2,11 @@ const Users = require('../auth/auth-model');
 
 // prettier-ignore
 const validateNewUser = async (req, res, next) => {
-    const { username, password, role } = req.body;
+    const { username, password, radio } = req.body;
 
 	if (!username) return res.status(400).json({ message: 'Username required' });
 	if (!password) return res.status(400).json({ message: 'Password required' });
-    if (!role) return res.status(400).json({ message: 'Role required' });
+    if (!radio) return res.status(400).json({ message: 'Role required' });
     
     try {
         const checkForUniqueness = await Users.findByUsername(username.toLowerCase())
