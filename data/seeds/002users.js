@@ -15,7 +15,7 @@ exports.seed = function(knex) {
 				username: 'jackson',
 				email: 'jackson@gmail.com',
 				password: bcrypt.hashSync('password', 6),
-				radio: 'support'
+				radio: 'donor'
 			},
 			{
 				id: 3,
@@ -29,7 +29,7 @@ exports.seed = function(knex) {
 				username: 'tristan',
 				email: 'tristan@gmail.com',
 				password: bcrypt.hashSync('password', 6),
-				radio: 'support'
+				radio: 'donor'
 			},
 			{
 				id: 5,
@@ -43,7 +43,7 @@ exports.seed = function(knex) {
 				username: 'jen',
 				email: 'jen@gmail.com',
 				password: bcrypt.hashSync('password', 6),
-				radio: 'support'
+				radio: 'donor'
 			}
 		]);
 	});
