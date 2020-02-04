@@ -29,6 +29,7 @@ const validateToken = (user, password, res) => {
 		return res.status(200).json({
 			uid: user.id,
 			message: `Welcome back, ${user.username}`,
+			role: user.radio,
 			token
 		});
 	}
@@ -46,8 +47,9 @@ router.post('/register', validateNewUser, async (req, res) => {
 
 		res.status(200).json({
 			uid: saved.id,
-			token,
-			message: `Welcome, ${saved.username}`
+			message: `Welcome, ${saved.username}`,
+			role: user.radio,
+			token
 		});
 	} catch (err) {
 		console.log(err);
