@@ -2,12 +2,10 @@ const router = require('express').Router();
 
 const Donations = require('../models/donations-model');
 
-const restricted = require('../auth/auth-middleware');
-
 const validateData = require('../middleware/validate-donation');
 
 // GET donations by project ID
-router.get('/:id', restricted, async (req, res) => {
+router.get('/:id', async (req, res) => {
 	try {
 		const donations = await Donations.getDonosWithTotal(req.params.id);
 
@@ -19,7 +17,7 @@ router.get('/:id', restricted, async (req, res) => {
 });
 
 // GET donations by user ID
-router.get('/my_donations/:id', restricted, async (req, res) => {
+router.get('/my_donations/:id', async (req, res) => {
 	try {
 		const donations = await Donations.getUserDonos(req.params.id);
 
@@ -31,7 +29,7 @@ router.get('/my_donations/:id', restricted, async (req, res) => {
 });
 
 // POST new donation
-router.post('/', restricted, validateData, async (req, res) => {
+router.post('/', validateData, async (req, res) => {
 	try {
 		const donation = await Donations.addDonation(req.body);
 
@@ -43,7 +41,7 @@ router.post('/', restricted, validateData, async (req, res) => {
 });
 
 // DELETE donation by ID
-router.delete('/:id', restricted, async (req, res) => {
+router.delete('/:id', async (req, res) => {
 	try {
 		const deleted = await Donations.deleteDonation(req.params.id, req.token);
 

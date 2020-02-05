@@ -18,25 +18,7 @@ afterEach(async () => {
 });
 
 describe('donation routes', () => {
-	describe('/donations/2', () => {
-		// test('GET - should require an authorization token', async () => {
-		// 	const res = await request(server).get('/donations');
-
-		// 	expect(res.status).toBe(400);
-		// 	expect(res.type).toBe('application/json');
-		// 	expect(res.body.message).toBe('Please login and try again');
-		// });
-
-		// test('GET - should require non expired token', async () => {
-		// 	const res = await request(server)
-		// 		.get('/donations')
-		// 		.set('Authorization', 'Bearer 123');
-
-		// 	expect(res.status).toBe(401);
-		// 	expect(res.type).toBe('application/json');
-		// 	expect(res.body.message).toBe('Invalid token');
-		// });
-
+	describe('/donations', () => {
 		test('POST - should require an authorization token', async () => {
 			const res = await request(server)
 				.post('/donations')
