@@ -2,7 +2,6 @@ const request = require('supertest');
 const server = require('../../server');
 
 const db = require('../../../data/dbConfig');
-const Campaigns = require('../../models/campaigns-model');
 
 const user_1 = {
 	username: 'fooBar',
@@ -11,17 +10,8 @@ const user_1 = {
 	radio: 'organization'
 };
 
-const campaign_1 = {
+const campaign = {
 	title: 'test1',
-	location: 'local host',
-	description: 'testing',
-	urgency: 'low',
-	funding_goal: 0,
-	created_by: 1
-};
-
-const campaign_2 = {
-	title: 'test2',
 	location: 'local host',
 	description: 'testing',
 	urgency: 'low',
@@ -32,15 +22,17 @@ const campaign_2 = {
 let token;
 
 const initializeTest = async () => {
-	await db('campaigns').insert(campaign_1);
-	// const res = await request(server)
-	// 	.post('/auth/register')
-	// 	.send(user_1);
-	// token = res.body.token;
+	await db('campaigns').insert(campaign);
+
+	const res = await request(server)
+		.post('/auth/register')
+		.send(user_1);
+
+	token = res.body.token;
 };
 
 const endTest = async () => {
-	// await db('users').truncate();
+	await db('users').truncate();
 	await db('campaigns').truncate();
 };
 
@@ -76,15 +68,18 @@ describe('campaign routes', () => {
 		// 	const res = await request(server)
 		// 		.get('/campaigns')
 		// 		.set('Authorization', `Bearer ${token}`);
-		// 	console.log('real token', token);
-		// 	expect(res.status).toBe(401);
+		// 	console.log(
+		// 		`\n====================================================================================================================================================================\n\n${token}\n\n====================================================================================================================================================================\n`
+		// 	);
+		// 	// expect(res.status).toBe(200);
+		// 	expect(res.type).toBe('application/json');
 		// 	expect(res.body.message).toBe('test');
 		// });
 
 		test('POST - should require an authorization token', async () => {
 			const res = await request(server)
 				.post('/campaigns')
-				.send(campaign_1);
+				.send(campaign);
 
 			expect(res.status).toBe(400);
 			expect(res.type).toBe('application/json');
@@ -94,7 +89,7 @@ describe('campaign routes', () => {
 		test('POST - should require non expired token', async () => {
 			const res = await request(server)
 				.post('/campaigns')
-				.send(campaign_1)
+				.send(campaign)
 				.set('Authorization', 'Bearer 123');
 
 			expect(res.status).toBe(401);
@@ -142,7 +137,7 @@ describe('campaign routes', () => {
 		test('PUT - should require an authorization token', async () => {
 			const res = await request(server)
 				.put('/campaigns/2')
-				.send(campaign_1);
+				.send(campaign);
 
 			expect(res.status).toBe(400);
 			expect(res.type).toBe('application/json');
@@ -152,7 +147,7 @@ describe('campaign routes', () => {
 		test('PUT - should require non expired token', async () => {
 			const res = await request(server)
 				.put('/campaigns/2')
-				.send(campaign_1)
+				.send(campaign)
 				.set('Authorization', 'Bearer 123');
 
 			expect(res.status).toBe(401);
@@ -165,7 +160,7 @@ describe('campaign routes', () => {
 		test('POST - should require an authorization token', async () => {
 			const res = await request(server)
 				.post('/campaigns/search')
-				.send({ title: 'campaign_1' });
+				.send({ title: 'campaign' });
 
 			expect(res.status).toBe(400);
 			expect(res.type).toBe('application/json');
@@ -175,7 +170,7 @@ describe('campaign routes', () => {
 		test('POST - should require non expired token', async () => {
 			const res = await request(server)
 				.post('/campaigns/search')
-				.send({ title: 'campaign_1' })
+				.send({ title: 'campaign' })
 				.set('Authorization', 'Bearer 123');
 
 			expect(res.status).toBe(401);

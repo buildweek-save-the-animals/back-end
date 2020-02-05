@@ -1,10 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {
+	// console.log(
+	// 	`\n====================================================================================================================================================================\n\n${req.headers.authorization}\n\n====================================================================================================================================================================\n`
+	// );
 	const { authorization } = req.headers;
 
 	if (authorization) {
-		const secret = process.env.JWT_SECRET || 'testSectet';
+		const secret = process.env.JWT_SECRET || 'testSecret';
 
 		jwt.verify(authorization, secret, (err, decodedToken) => {
 			if (!err) {
