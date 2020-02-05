@@ -18,11 +18,11 @@ const user_2 = {
 };
 
 beforeEach(async () => {
-	return await db('users').insert(user_1);
+	await db('users').insert(user_1);
 });
 
 afterEach(async () => {
-	return await db('users').truncate();
+	await db('users').truncate();
 });
 
 describe('auth/user routes', () => {
