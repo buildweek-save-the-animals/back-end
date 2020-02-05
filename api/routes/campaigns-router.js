@@ -2,12 +2,10 @@ const router = require('express').Router();
 
 const Campaigns = require('../models/campaigns-model');
 
-const restricted = require('../auth/auth-middleware');
-
 const validateData = require('../middleware/validate-campaign');
 
 // GET all campaigns
-router.get('/', restricted, async (__, res) => {
+router.get('/', async (__, res) => {
 	try {
 		const campaigns = await Campaigns.getAll();
 
@@ -19,7 +17,7 @@ router.get('/', restricted, async (__, res) => {
 });
 
 // GET campaign by ID
-router.get('/:id', restricted, async (req, res) => {
+router.get('/:id', async (req, res) => {
 	try {
 		const campaign = await Campaigns.findById(req.params.id);
 
@@ -33,7 +31,7 @@ router.get('/:id', restricted, async (req, res) => {
 });
 
 // POST search for campaign by title, case insensitive
-router.post('/search', restricted, async (req, res) => {
+router.post('/search', async (req, res) => {
 	try {
 		const campaign = await Campaigns.searchByTitle(req.body.title.toLowerCase());
 
@@ -47,7 +45,7 @@ router.post('/search', restricted, async (req, res) => {
 });
 
 // POST add new project
-router.post('/', restricted, validateData, async (req, res) => {
+router.post('/', validateData, async (req, res) => {
 	try {
 		const campaign = await Campaigns.add(req.body);
 
@@ -59,7 +57,7 @@ router.post('/', restricted, validateData, async (req, res) => {
 });
 
 // DELETE campaign
-router.delete('/:id', restricted, async (req, res) => {
+router.delete('/:id', async (req, res) => {
 	try {
 		const deleted = await Campaigns.remove(req.params.id, req.token);
 
@@ -71,7 +69,7 @@ router.delete('/:id', restricted, async (req, res) => {
 });
 
 // PUT edit campaign
-router.put('/:id', restricted, async (req, res) => {
+router.put('/:id', async (req, res) => {
 	try {
 		const campaign = await Campaigns.edit(req.params.id, req.body, req.token);
 
