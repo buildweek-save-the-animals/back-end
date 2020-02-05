@@ -9,20 +9,20 @@ describe('server.js', () => {
 		expect(env).toBe('testing');
 	});
 
-	test('it should return an OK status code', async () => {
+	test('GET - it should return an OK status code', async () => {
 		const res = await request(server).get('/');
 
 		expect(res.status).toEqual(200);
 	});
 
-	test('it should return a "Server up" message inside JSON object', async () => {
+	test('GET - it should return a "Server up" message inside JSON object', async () => {
 		const resMsg = { message: 'Server up' };
 		const res = await request(server).get('/');
 
 		expect(res.body).toEqual(resMsg);
 	});
 
-	test('it should return correct content type, "application/json"', async () => {
+	test('GET - it should return correct content type, "application/json"', async () => {
 		const res = await request(server).get('/');
 
 		expect(res.type).toEqual('application/json');
