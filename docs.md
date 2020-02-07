@@ -39,7 +39,7 @@ _*Required:*_
 {
   "username": string,
   "password": string
-  "role": string ( "low", "medium", or "high" )
+  "role": string ( "donor", or "organization" )
 }
 ```
 
